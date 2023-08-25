@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: hacbs-test-project-yykx
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: hacbs-test-project-yykx
+    app.kubernetes.io/part-of: rhtap-demo-app
+  name: hacbs-test-project-yykx
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: hacbs-jvm-build-test-project
+      app.kubernetes.io/instance: hacbs-test-project-yykx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hacbs-jvm-build-test-project
+        app.kubernetes.io/instance: hacbs-test-project-yykx
+    spec:
+      containers:
+      - image: hacbs-jvm-build-test-project:latest
+        name: hacbs-jvm-build-test-project
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+status: {}
